@@ -1,0 +1,33 @@
+import java.util.*; 
+
+public class MyClass {
+    public static ArrayList nextGreaterElement(int[] a)
+    {
+        ArrayList arr=new ArrayList();
+        Stack<Integer> s=new Stack<Integer>();
+        for(int i=a.length-1;i>=0;i--)
+        {
+            if(s.size()==0)
+            arr.add(-1);
+            else if(s.size()>0 && s.peek()>a[i])
+            arr.add(s.peek());
+            else if(s.size()>0 && s.peek()<=a[i]){
+            while(s.size()>0 && s.peek()<=a[i])
+            s.pop();
+            if(s.size()==0)
+            arr.add(-1);
+            else
+            arr.add(s.peek());
+            }
+            s.push(a[i]);
+        }
+                Collections.reverse(arr); 
+
+        return arr;
+    }
+    public static void main(String args[]) {
+        int[] arr={11,13,21,3,4,2};
+    ArrayList a=nextGreaterElement(arr);
+    System.out.println(a);
+    }
+}
